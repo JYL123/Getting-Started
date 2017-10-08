@@ -23,3 +23,5 @@ class Solution {
         return layers;
     }
 }
+
+P.S. int y = (int) Math.floor(Math.sqrt(2*n+0.25)-0.5);doesn't work as when n is huge, it will overflow; 
