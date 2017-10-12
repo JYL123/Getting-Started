@@ -14,4 +14,39 @@ Output: 1
 Explanation: You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3. 
 And even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.
 You need to output 1.
+==============================================================================================================================
+
+public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        
+        int childrenIndex = 0;
+        int cookieIndex = 0;
+        int counter = 0;
+        
+        if (g.length == 0 || s.length == 0) return 0;
+        
+        if(s.length > g.length) {
+         while(childrenIndex < g.length && cookieIndex < s.length) {
+            if(s[cookieIndex] < g[childrenIndex]) {
+                cookieIndex++;
+            } else {
+                cookieIndex++;
+                counter ++;
+                childrenIndex ++;
+            }
+         }
+        } else {
+            while(cookieIndex < s.length) {
+            if(s[cookieIndex] < g[childrenIndex]) {
+                cookieIndex++;
+            } else {
+                cookieIndex++;
+                counter ++;
+                childrenIndex ++;
+            }
+         }
+        }       
+        return counter;           
+    }
 
