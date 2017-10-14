@@ -12,7 +12,19 @@ Explanation:
 The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
 Note:
 The range of node's value is in the range of 32-bit signed integer.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 ==============================================================================================================================
+import java.util.Queue; (outside of the class)
+
 public List<Double> averageOfLevels(TreeNode root) {
         int counter = 0;
         List<Double> averageValue = new ArrayList<Double>();
