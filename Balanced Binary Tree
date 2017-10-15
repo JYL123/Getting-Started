@@ -29,8 +29,7 @@ class Solution {
         boolean isBalancedLeft = isBalanced(root.left);
         boolean isBalancedRight = isBalanced(root.right);
                
-        return isrightHeight && isBalancedLeft && isBalancedRight;
-        
+        return isrightHeight && isBalancedLeft && isBalancedRight;        
     }
     
     public static int getHeight (TreeNode node) {
