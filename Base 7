@@ -1,0 +1,30 @@
+Given an integer, return its base 7 string representation.
+
+Example 1:
+Input: 100
+Output: "202"
+==============================================================================================================================
+
+class Solution {
+    public String convertToBase7(int num) {
+        int base = 7;
+        StringBuilder builder = new StringBuilder();
+        
+        if(Math.abs(num) < base) return Integer.toString(num);
+        
+        while(Math.abs(num) >= base) {
+            builder.append(Math.abs(num)%base);
+            num = (int) Math.floor(num/base);
+        }
+        
+        if(num!=0) {
+            builder.append(Math.abs(num));
+        }
+        
+        if(num<0) {
+            builder.append("-");
+        }
+        
+        return builder.reverse().toString();
+    }
+}
