@@ -10,3 +10,30 @@ Each round's operation is permanent and could have an impact on the round before
 
 You need to return the sum of the points you could get in all the rounds.
 =========================================================================================================================================
+public int calPoints(String[] ops) {   
+        int points = 0;
+        int prevPoints = 0;
+        
+        for(int i = 0; i < ops.length; i++) {
+            String op = ops[i];
+            //System.out.println("points: "+points);
+            switch (op) {
+                case "C": int tempPrev2 = prevPoints;                 
+                    prevPoints = points; 
+                    points = points - (points - tempPrev2);
+                    ops[i-1] = "0";
+                    break;
+                case "D": int tempPrev = points;
+                    prevPoints = tempPrev;
+                    points = 3*tempPrev;    
+                    break;
+                case "+": int tempPoints = points;
+                    points = 2*points;
+                    prevPoints = points;
+                    break;
+                default: prevPoints = points;
+                    points = points + Integer.parseInt(ops[i]);
+            }
+        }    
+        return points;
+    }
