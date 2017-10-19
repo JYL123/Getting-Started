@@ -12,3 +12,52 @@ Input: [7, 6, 4, 3, 1]
 Output: 0
 
 In this case, no transaction is done, i.e. max profit = 0.
+==============================================================================================================================
+
+//To be changed
+public int maxProfit(int[] prices) {
+        Queue<Integer> buy = new LinkedList<Integer>();
+        Queue<Integer> sell = new LinkedList<Integer>();
+        
+        //Always evaluate the first price
+        if (prices.length != 0)
+        buy.offer(prices[0]);
+        
+        for (int i = 1; i < prices.length; i++) {
+            if(prices[i] < buy.peek()) {
+                buy.poll();
+                buy.offer(prices[i]);
+            } else {
+                if(sell.isEmpty()) {
+                    sell.offer(prices[i]);
+                }
+                
+                if (sell.peek() < prices[i]) {
+                    sell.poll();
+                    sell.offer(prices[i]);
+                }
+            }
+        }
+        
+        if((!sell.isEmpty()) && (!buy.isEmpty()) ) return sell.poll() - buy.poll();
+        else return 0; 
+    }
+    
+    //One of the solutions in c:
+    int maxProfit(vector<int>& prices) {
+            const size_t len = prices.size();
+            if (len <= 1) {
+                return 0;
+            }
+            int result = prices[1] - prices[0];
+            int minPrice = prices[0];
+            for (size_t i = 2; i < len; ++i)
+            {
+                minPrice = std::min(prices[i - 1], minPrice);
+                if (result < prices[i] - minPrice) {
+                    result = prices[i] - minPrice;
+                }
+            }
+            return result > 0 ? result : 0;
+        }
+   
