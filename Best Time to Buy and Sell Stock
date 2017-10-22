@@ -50,9 +50,13 @@ public int maxProfit(int[] prices) {
             if (len <= 1) {
                 return 0; //buy = sell 
             }
+            
             int result = prices[1] - prices[0]; // assume day 1 - buy, day 2 - sell 
             int minPrice = prices[0]; // so the day 1 price becomes the min price to buy
-            for (size_t i = 2; i < len; ++i) // starts from day 2 onwards ... 
+            
+            // starts from day 2 onwards ... 
+            // with i - 1 = 1
+            for (size_t i = 2; i < len; ++i) 
             { 
                 // compare each pair, choose a min price to be minPrice
                 // the point is that, the min will always be min, so the rest is about find the max result, which is just price[i]-minPrice
