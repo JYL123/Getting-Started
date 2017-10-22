@@ -47,16 +47,15 @@ public int maxProfit(int[] prices) {
     int maxProfit(vector<int>& prices) {
             const size_t len = prices.size();
             if (len <= 1) {
-                return 0;
+                return 0; //buy = sell 
             }
-            int result = prices[1] - prices[0];
-            int minPrice = prices[0];
-            for (size_t i = 2; i < len; ++i)
-            {
-                minPrice = std::min(prices[i - 1], minPrice);
+            int result = prices[1] - prices[0]; // assume day 1 - buy, day 2 - sell 
+            int minPrice = prices[0]; // so the day 1 price becomes the min price to buy
+            for (size_t i = 2; i < len; ++i) // starts from day 2 onwards ... 
+            { 
+                minPrice = std::min(prices[i - 1], minPrice); // compare each pair, choose a min price to be minPrice 
                 if (result < prices[i] - minPrice) {
-                    result = prices[i] - minPrice;
-                }
+                    result = prices[i] - minPrice; // choose a bigger result as profit.               }
             }
             return result > 0 ? result : 0;
         }
