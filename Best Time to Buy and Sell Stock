@@ -53,7 +53,9 @@ public int maxProfit(int[] prices) {
             int minPrice = prices[0]; // so the day 1 price becomes the min price to buy
             for (size_t i = 2; i < len; ++i) // starts from day 2 onwards ... 
             { 
-                minPrice = std::min(prices[i - 1], minPrice); // compare each pair, choose a min price to be minPrice 
+                // compare each pair, choose a min price to be minPrice
+                // the point is that, the min will always be min, so the rest is about find the max result, which is just price[i]-minPrice
+                minPrice = std::min(prices[i - 1], minPrice); 
                 if (result < prices[i] - minPrice) {
                     result = prices[i] - minPrice; // choose a bigger result as profit.               }
             }
