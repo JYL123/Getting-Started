@@ -33,4 +33,4 @@
 
 
 
-[Thanks to the blog](https://chao1995.github.io/blog/uncategorized/A-Long-Long-Way-To-Be-A-Great-Programmer/) 
+[Thanks for the blog](https://chao1995.github.io/blog/uncategorized/A-Long-Long-Way-To-Be-A-Great-Programmer/) 
