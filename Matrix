@@ -68,3 +68,45 @@ class Solution {
     }
     
 }
+--------------------------------------------------------------------------------------------------------------------------
+BFS:
+class Solution {
+    final int MAX = 10001;
+    
+    public int[][] updateMatrix(int[][] matrix) {
+        
+        int[][] dist = new int[matrix.length][matrix[0].length];
+        Queue<Pair<Integer, Integer>> zeroQ = new LinkedList<Pair<Integer, Integer>>();
+        
+        for(int i=0; i<dist.length; i++) {
+            for(int j=0; j<dist[0].length; j++) {
+                if(matrix[i][j] == 0) {
+                    dist[i][j] = 0;
+                    zeroQ.push(new Pair(i, j));
+                } else {
+                    dist[i][j] = MAX;
+                }
+                
+            }
+        }
+            
+        int[][] directions = { {1, 0},{-1, 0}, {0, 1}, {0, -1} };
+        
+        while (!q.empty()) {
+            pair<Integer, Integer> currentCell = zeroQ.pop();
+            for (int i = 0; i < directions.length; i++) {
+                int newRow = currentCell.getKey() + directions[i][0];
+                int newColnum = currentCell.getValue() + directions[i][1];
+                
+                if(newRow < matrix.length && newRow > -1 && newColnum < matrix[0].length && newColnum > -1) {
+                    if(dist[newRow][newColnum] < dist[currentCell.getKey()][currentCell.getValue()] + 1)
+                        dist[newRow][newColnum] = dist[currentCell.getKey()][currentCell.getValue()] + 1;
+                    zeroQ.push(new Pair(newRow,newColnum));
+                }
+            }
+        }
+        
+        return dist;
+    }
+    
+}
