@@ -27,7 +27,7 @@ public static int NaiveRecursiveFib(int n) {
         }
     }
 
-    public static int bottonUpFib(int n) {
+    public static int bottomUpFib(int n) {
         int[] fib = new int[n+1];
 
         for (int i = 1; i <= n; i++) {
