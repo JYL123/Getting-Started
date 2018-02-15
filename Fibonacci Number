@@ -1,1 +1,41 @@
+Three ways to compute fibonacci number:
+1. Naive recursion
+2. Memo table recursion
+3. Bottom up table 
 
+public static int NaiveRecursiveFib(int n) {
+        if (n <= 2) {
+            return 1;
+        } else {
+            return NaiveRecursiveFib(n-1) + NaiveRecursiveFib(n-2);
+        }
+    }
+
+
+    public static int MemoRecursiveFib(int n) {
+        int[] memo = new int[n+1];
+
+        if( memo[n] != 0 ) {
+            return memo[n];
+        } else {
+            if (n <= 2) {
+                memo[n] = 1;
+            } else {
+                memo[n] = MemoRecursiveFib(n-1) + MemoRecursiveFib(n-2);
+            }  
+            return memo[n];
+        }
+    }
+
+    public static int bottonUpFib(int n) {
+        int[] fib = new int[n+1];
+
+        for (int i = 1; i <= n; i++) {
+            if(i <= 2) fib[i] = 1;
+            else {
+                fib[i] = fib[i-1] + fib[i-2];
+            }
+        }
+
+        return fib[n];
+    }
