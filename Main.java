@@ -7,7 +7,7 @@ public class Main {
         //System.out.println("Enter the size of the matrix: ");
 
         int size =scan.nextInt();
-        int[][] matrix = new int[size][size + 1];
+        int[][] matrix = new int[size][size];
 
         //System.out.println(size);
         //System.out.println("Enter your lines: ");
@@ -54,12 +54,17 @@ public class Main {
 	    while (index < row.length) {
 	        if(stack.isEmpty() || row[index] >= row[stack.peek()]) {
 	            stack.push(index++);
-            } else {
+            	} else {
 	            int top = stack.pop();
 	            area = Math.max(area, row[top] * (stack.isEmpty()? index : (index - stack.peek() -1)));
-            }
-        }
-
+            	}
+           }
+	    
+	   while (!stack.isEmpty()) {
+		   int top = stack.pop();
+	           area = Math.max(area, row[top] * (stack.isEmpty()? index : (index - stack.peek() -1)));
+	   }
+	    
 	    return area;
     }
 }
