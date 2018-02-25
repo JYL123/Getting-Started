@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
 	
     /**
-     *  Scan input and initialize the matrix
+     *Scan input and initialize the matrix
      */
     public static void main(String[] args) {
         Scanner scan=new Scanner(System.in);
