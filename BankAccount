@@ -1,0 +1,18 @@
+You are going to receive  payments in the upcoming month. The payments are numbered from  to and  denotes the amount of money in dollars that will be paid in connection with the -th payment. Before receiving the payments, you have two banking options to consider:
+
+You can receive all the payments on your current bank account remembering that the bank charges you for each payment  , where  and  are given.
+You can pay the bank  dollars upfront to open a new special account for which the bank doesn't charge you for any of the upcoming transactions.
+Your task is to decide which of the above two options is more profitable to you. If both ways are equally profitable, then you prefer to be charged for each transaction.
+
+===============================================================================================================================
+
+        if(p.length == 0) return "fee";
+        
+        //with current account
+        double curAccFee = 0;
+        for(int i = 0; i < n; i++) {
+            curAccFee += Math.max(k, x*p[i]/100.0); // we have to use "100.0" instead of "100", else the answer returned is an int instead of double
+        }
+        
+        if (curAccFee == d) return "fee";
+		    return (curAccFee < d) ? "fee" : "upfront";
