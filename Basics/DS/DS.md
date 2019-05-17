@@ -85,7 +85,7 @@ class Stack
 
     boolean isEmpty()
     {
-        return (top < 0) true : false;
+        return (top < 0) ? true : false;
     }
 
     boolean push (int num)
@@ -116,4 +116,85 @@ class Stack
 ### Implementation
 ```java
 Queue<T> queue = new LinkedList<T>();
+
+PriorityQueue<T> pQueue = new PriorityQueue<T>(); 
+```
+
+## Tree
+* Binary tree
+* Binary search tree
+* Complete binary tree
+* Full binary tree
+* Perfect binary tree
+* Binary heaps (min & max heaps)
+* Tries
+
+### Implementation 
+```java
+class Node<T>
+{
+    List<Node<T>> children = new ArrayList<Node<T>>();
+    Node<T> parent;
+    T data;
+
+    public Node(T data)
+    {
+        this.data = data;
+    }
+
+    public Node(T data, Node<T> parent)
+    {
+        this.data = data;
+        this.parent = parent;
+    }
+
+    public List<Node<T>> getChildren()
+    {
+        return children;
+    }
+
+    public void setParent(Node<T> parent)
+    {
+        this.parent = parent;
+        parent.addChild(this);
+    }
+
+    public void addChild(Node<T> child)
+    {
+        this.children.add(child);
+        child.setParent(this);
+    }
+
+    public void addChild(T data)
+    {
+        Node<T> newNode = new Node<T>(data);
+        this.children.add(newNode);
+        newNode.setParent(this);
+    }
+
+    public T getData()
+    {
+        return data;
+    }
+
+    public void setData(T data)
+    {
+        this.data = data;
+    }
+
+    public boolean isRoot()
+    {
+        return (this.parent==null);
+    }
+
+    public boolean isLeaf()
+    {
+        return (this.children.size==0);
+    }
+
+    public void removeParent()
+    {
+        this.parent = null;
+    }
+} 
 ```
