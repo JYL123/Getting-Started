@@ -127,9 +127,9 @@ PriorityQueue<T> pQueue = new PriorityQueue<T>();
 * Full binary tree
 * Perfect binary tree
 * Binary heaps (min & max heaps)
-* Tries
+* Tries/Prefix tree
 
-### Implementation 
+### Implementation (Tree/Tries)
 ```java
 class Node<T>
 {
@@ -197,4 +197,129 @@ class Node<T>
         this.parent = null;
     }
 } 
+```
+
+### Binary Tree Traveral
+
+* In-order traversal
+```java
+void inorderTraversal(TreeNode node)
+{
+    if (node != null)
+    {
+        inorderTraversal(node.left);
+        print(node);
+        inorderTraversal(node.right);
+    }
+}
+```
+
+* Pre-order traversal
+```java
+void preorderTraversal(TreeNode node)
+{
+    if(node != null)
+    {
+        print(node);
+        preorderTraversal(node.left);
+        preorderTraversal(node.right);
+    }
+}
+```
+
+* Post-order traversal
+```java
+void postorderTraversal(TreeNode node)
+{
+    if(node != null)
+    {
+        postorderTraversal(node.left);
+        postorderTraversal(node.right);
+        print(node);
+    }
+}
+```
+
+## Graphs
+
+### Implementation
+* Adjacency list
+``` java
+class Node 
+{
+    String data;
+    Node[] children;
+}
+
+class Graph
+{
+    Node[] nodes;
+}
+```
+
+* Adjacency matrix
+```java
+ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
+
+
+int[][] matrix = new int[rows][cols];
+```
+
+### Graph Search
+* DFS
+```java
+void DFS (int v)
+{
+    boolean[] visited = new boolean[V];
+    DFSUtil(v, visited);
+}
+
+void DFSUtil(int startNode, boolean[] visited)
+{
+    visited[startNode] = true;
+    System.out.print(startNode + " ");
+
+    Iterator<Integer> i = adj[startNode].listIterator();
+    while(i.hasNext())
+    {
+        int next = i.next();
+        if(!visited[next])
+        {
+            DFSUtil(next, visited);
+        }
+    }
+
+}
+
+```
+
+* BFS
+```java
+void BFS (int source)
+{
+    boolean[] visited = new boolean[V];
+    Queue<Integer> queue = new LinkedList<Integer>();
+
+    visited[source] = true;
+    queue.add(source);
+
+    while(queue.size() != 0)
+    {
+        source = queue.poll();
+        System.out.print(source + " ");
+
+        Iterator<Integer> i = adj[source].listIterator();
+        while(i.hasNext())
+        {
+            int next = i.next();
+            if(!visited[next])
+            {
+                visited[next] = true;
+                queue.add(next);
+            }
+        }
+        
+    }
+}
+
 ```
