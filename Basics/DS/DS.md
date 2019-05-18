@@ -274,12 +274,12 @@ void DFS (int v)
     DFSUtil(v, visited);
 }
 
-void DFSUtil(int startNode, boolean[] visited)
+void DFSUtil(int source, boolean[] visited)
 {
-    visited[startNode] = true;
-    System.out.print(startNode + " ");
+    visited[source] = true;
+    System.out.print(source + " ");
 
-    Iterator<Integer> i = adj[startNode].listIterator();
+    Iterator<Integer> i = adj[source].listIterator();
     while(i.hasNext())
     {
         int next = i.next();
@@ -318,7 +318,6 @@ void BFS (int source)
                 queue.add(next);
             }
         }
-        
     }
 }
 
