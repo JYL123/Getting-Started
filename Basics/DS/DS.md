@@ -120,6 +120,101 @@ Queue<T> queue = new LinkedList<T>();
 PriorityQueue<T> pQueue = new PriorityQueue<T>(); 
 ```
 
+## Heap 
+
+### Min-Heap Implementation
+```java
+class MinHeap()
+{
+    int heapSize = 0;
+    int capacity;
+    int[] a;
+
+    public MinHeap(int capacity)
+    {
+        this.capacity = capacity;
+        this.a = new int[capacity];
+    }
+
+    public void insertKey(int k)
+    {
+        if(heapSize == capacity) return;
+
+        // first, add to the last
+        a[heapSize] = k;
+        heapSize++;
+
+        // second, fix the min heap property
+        i = heapSize - 1;
+        while( i != 0 && a[i] < a[parent(i)])
+        {
+            swap(a[i], parent(i));
+            i = parent(i);
+        }
+    }
+
+    public void decreaseKey(int index, int newValue)
+    {
+        a[index] = newValue;
+
+        // fix min heap property
+        while( index != 0 && a[index] < a[parent(index)])
+        {
+            swap(a[index], parent(index));
+            index = parent(index);
+        }
+    }
+
+    // a recursive method to heapify a subtree with a root at given 
+    // index. This method assumes that the subtree is already 
+    // heapfied.
+    public void MinHeapify(int index)
+    {
+        int left = left(index);
+        int right = right(index);
+        int smallest = index;
+        
+        if(a[left] < smallest && left < heapSize) smallest = left;
+        if(a[right] < smallest && right < heapSize) smallest = right;
+
+        while(index < heapSize && (smallest != index))
+        {
+            swap(a[index], a[smallest]);
+            MinHeapify(smallest);
+        }
+    }
+
+    public int extractMin()
+    {
+        if(heapSize == 0) return Integer.MAX;
+
+        if(heapSize == 1) 
+        {
+            heapSize--;
+            int root = a[0];
+            a[0] = 0;
+            return root; 
+        }
+
+        int root = a[0];
+        a[0] = a[heapSize - 1];
+        heapSize--;
+        MinHeapify(0);
+
+        return root;
+    }
+
+    public void deleteKey(int index)
+    {
+        decreaseKey(index, Integer.MIN);
+        extractMin();
+    }
+}
+
+```
+
+### Max--Heap Implementation
+
 ## Tree
 * Binary tree
 * Binary search tree
