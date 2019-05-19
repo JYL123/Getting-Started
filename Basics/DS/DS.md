@@ -213,7 +213,7 @@ class MinHeap()
 
 ```
 
-### Max--Heap Implementation
+### Max-Heap Implementation
 
 ## Tree
 * Binary tree
