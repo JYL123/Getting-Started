@@ -73,8 +73,31 @@ void merge(int[] a, int l, int r, int mid)
 
 ## Quick Sort
 ```java
-int partition()
+int partition(int[] a, int l, int h)
 {
-    
+    int pivot = a[h];
+    int index = l - 1;
+
+    for(int j = l; j < h; j++)
+    {
+        if(a[j] < pivot)
+        {
+            index++;
+            swap(a[i], a[j]);
+        }
+    }
+
+    swap(a[index+1], a[h]);
+}
+
+void sort(int[] a, int l, int h)
+{
+    if(l < h)
+    {
+        int p = partition(a, l, h);
+
+        sort(a, l, p-1);
+        sort(a, p+1, h);
+    }
 }
 ```
