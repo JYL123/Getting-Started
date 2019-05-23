@@ -56,3 +56,16 @@ int updateBit(int num, int i, boolean bitIs1)
 }
 ```
 
+## Dynamic Programming 
+
+### Approaches 
+* Bottom-Up Approach 
+Start with knowing how to solve the problem for a simple case, like a list with only one element, then move on with lists with two elements, etc. `Think about how you can build the solution for one case off of the previous case.`
+
+* Top-Down Approach
+`Think about how to divide the problem for case N into subproblems.`
+
+* Half-and-Half Approach
+`Divide the data set in half.` For example, binary search, merge sort.
+
+
