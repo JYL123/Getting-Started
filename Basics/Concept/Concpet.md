@@ -7,7 +7,7 @@
 * `<<`: LEFT SHIFT (* power(2, k))
 * `>>`: RIGHT SHIFT (/power(2, k))
 
-`^` | `&` | `|` 
+`^` | `&` | `|`
 --- | --- | --- |  
 x ^ 0s = x | x & 0s = 0 | x | 0s = x | 
 x ^ 1s = ~x| x & 1s = x | x | 1s = 1s | 
