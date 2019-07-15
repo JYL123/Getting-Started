@@ -68,4 +68,39 @@ Start with knowing how to solve the problem for a simple case, like a list with 
 * Half-and-Half Approach
 `Divide the data set in half.` For example, binary search, merge sort.
 
+## Object-Oriented Design
+Object-Oriented Design questions require a candidate to sketch out the classes and methods to implement technical problems or real-life objects. 
 
+### Approaches 
+1. Handle ambiguity 
+2. Define the core objects
+3. Analyse relationships 
+    
+    Ask: do any objects inherit from any others? Are relationships many-to-many or one-to-many?
+4. Identify key actions    
+
+### Design patterns 
+1. Singleton class
+```java
+public class Resturant {
+    private static Resturant _instance = null;
+    protected Resturant() {...}
+    public static Resturant getInstance() {
+        if (_instance == null) {
+            _instance = new Resturant();
+        }
+    }
+}
+```
+2. Factory Method: offers an interface for creating an instance of a class with its subclass deciding which class to instantiate.
+```java
+public class CardGame {
+    public static CardGame createCardGame(GameType type) {
+        if(type == GameType.Pocker) {
+            return new PockerGame();
+        } else if (type == GameType.BlackJack) {
+            return new BlackJack();
+        } else if ....
+    }
+}
+```
