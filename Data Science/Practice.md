@@ -120,18 +120,57 @@ def minion_game(string):
 ```
 * P.S. list doesn't have `get` method, to retrieve an element: list[index]
 
+#### substring
+```python
+def merge_the_tools(string, k):
+    # your code goes here
+    sub_length = int(len(string)/k)
+    length = len(string)
+    substrings = []
+
+    for index in range(0, length, sub_length):
+        substring = string[index:index+sub_length] # last index is not sliced in 
+        substrings.append(substring)
+    
+    for substring in substrings:
+        new_string = []
+        i = 0
+        for i in range(len(substring)):
+            if substring[i] not in new_string:
+                new_string.append(substring[i])
+            elif substring[i] in new_string and substring[i] != new_string[len(new_string)-1]:
+                break
+
+        answer = ""
+        for x in range(len(new_string)):
+            answer += new_string[x]
+
+        print(answer)
+
+
+
+
+if __name__ == '__main__':
+    string, k = input(), int(input())
+    merge_the_tools(string, k)
+```
+
+#### print without a newline
+```python
+print(i, end="")
+```
 
 ### SQL
 #### alter table
 `ALTER TABLE` lets you add columns to a table in a database.
 ```sql
 ALTER TABLE abc
-ADD columnName dataType
+ADD columnName dataType;
 ```
 #### average
 ```sql
 SELECT AVG(someColumn)
-FROM tableName
+FROM tableName;
 ```
 
 ### case
@@ -146,6 +185,50 @@ END AS QuantityText
 FROM OrderDetails;
 ```
 
+#### order by
+`ORDER BY` is a clause that indicates you want to sort the result set by a particular column either alphabetically or numerically.
+```sql
+SELECT CustomerName, City, Country
+FROM Customers
+ORDER BY
+(CASE
+    WHEN City IS NULL THEN Country
+    ELSE City
+END);
+```
+* P.S. `ORDER BY columnName ASC | DESC`
+
+#### left join/outer join
+An outer join will combine rows from different tables even if the join condition is not met. Every row in the left table is returned in the result set, and if the join condition is not met, then NULL values are used to fill in the columns from the right table.
+```sql
+SELECT columnName
+FROM tableName1 LEFT JOIN tableName2 on tableName1.a = tableName2.b;
+```
+
+#### with
+`WITH` clause lets you store the result of a query in a temporary table using an alias. You can also define multiple temporary tables using a comma and with one instance of the `WITH` keyword.
+
+The `WITH` clause is also known as common table expression (CTE) and subquery factoring. 
+
+```sql
+WITH tempName AS (
+    SELECT *
+    FROM tableName
+    WHERE someCondition
+)
+SELECT *
+FROM tempName
+WHERE columnName operator value;
+```
+
+#### group by
+The `GROUP BY `statement is often used with aggregate functions (`COUNT`, `MAX`, `MIN`, `SUM`, `AVG`) to group the result-set by one or more columns.
+```sql
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+```
+
 #### update values:
 ```sql
 UPDATE table_name
@@ -158,4 +241,61 @@ WHERE condition;
 SELECT column_name(s)
 FROM table_name
 WHERE column_name BETWEEN value1 AND value2;
+```
+
+#### practice
+```sql
+SELECT OCCUPATIONS.Name, '(' + SUBSTRING(OCCUPATIONS.Occupation, 1, 1) + ')'
+FROM OCCUPATIONS
+ORDER BY OCCUPATIONS.Name ASC;
+
+WITH CountOccupations AS (
+    SELECT Occupation, COUNT(Name) AS Num   
+    FROM OCCUPATIONS
+    GROUP BY Occupation
+)
+SELECT 
+(CASE
+    WHEN CountOccupations.Occupation = 'Doctor' THEN 'There are a total of ' + CONVERT(varchar(10), CountOccupations.Num) +  ' doctors.'
+    WHEN CountOccupations.Occupation = 'Singer' THEN 'There are a total of ' + CONVERT(varchar(10), CountOccupations.Num) +  ' singers.'
+    WHEN CountOccupations.Occupation = 'Actor' THEN 'There are a total of ' + CONVERT(varchar(10), CountOccupations.Num) +  ' actors.'
+    ELSE 'There are a total of ' + CONVERT(varchar(10), CountOccupations.Num) +  ' professors.'
+END)
+FROM CountOccupations
+ORDER BY CountOccupations.NUm, CountOccupations.Occupation;
+```
+
+#### user-defined variables
+https://nifannn.github.io/2017/10/21/SQL-Notes-Hackerrank-Occupations/
+
+
+#### multiple with-as 
+```sql
+WITH abc AS( select
+             FROM ...)
+, XYZ AS(select
+         From abc ....) /*This one uses "abc" multiple times*/
+  Select 
+  From XYZ.... 
+```
+
+#### substraction of rows from tables
+```sql
+WITH DISCITY AS (
+    SELECT DISTINCT CITY
+    FROM STATION
+)
+
+SELECT 
+  (
+    SELECT 
+      COUNT (*) as val1 
+    FROM 
+      STATION
+  ) - (
+    SELECT 
+      COUNT (*) as val2 
+    FROM 
+      DISCITY
+  ) as total_count
 ```
